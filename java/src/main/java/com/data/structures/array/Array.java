@@ -1,10 +1,7 @@
 package com.data.structures.array;
 
 
-import javax.naming.InitialContext;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author [wangjiahui]
