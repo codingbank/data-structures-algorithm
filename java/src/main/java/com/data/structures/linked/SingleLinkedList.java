@@ -58,8 +58,63 @@ public class SingleLinkedList<E> {
         return true;
     }
 
-    public E get(){
+    /**
+     * @Title: [getLast]
+     * @author: [wangjiahui]
+     * @CreateDate: [2019-05-13 14:28]
+     * @Description: [获取最后一个元素]
+     * @version: [V1.0]
+     * @return E
+     */
+    public E getLast(){
         return last.item;
+    }
+
+    public E getFirst(){
+        return first.item;
+    }
+
+    /**
+     * @Title: [get]
+     * @author: [wangjiahui]
+     * @CreateDate: [2019-05-13 14:28]
+     * @Description: [获取第index元素]
+     * @version: [V1.0]
+     * @param [index]
+     * @return E
+     * @throws SingleLinkedList
+     */
+    public E get(int index){
+        checkElementIndex(index);
+        return node(index).item;
+    }
+
+    private Node<E> node(int index) {
+        Node<E> x = first;
+        for (int i=0;i<index;i++) {
+            x = x.next;
+        }
+        return x;
+    }
+
+    /**
+     * @Title: [checkElementIndex]
+     * @author: [wangjiahui]
+     * @CreateDate: [2019-05-13 14:29]
+     * @Description: [检验index]
+     * @version: [V1.0]
+     * @param [index]
+     * @return void
+     * @throws SingleLinkedList
+     */
+    private void checkElementIndex(int index) {
+        if (!isElementIndex(index)) {
+            throw new IndexOutOfBoundsException("index = "+index+", size = "+size);
+        }
+    }
+
+    private boolean isElementIndex(int index) {
+        return index>=0 && index<size;
     }
 
     /**
@@ -93,6 +148,15 @@ public class SingleLinkedList<E> {
             this.next = next;
         }
     }
+
+    public static void main(String[] args){
+        SingleLinkedList<Integer> single = new SingleLinkedList<Integer>();
+        single.add(1);
+        single.add(2);
+        single.add(3);
+        System.out.println(single.get(3));
+    }
+
 
 
 }
