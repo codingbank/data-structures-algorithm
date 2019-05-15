@@ -1,5 +1,7 @@
 package com.data.structures.linked;
 
+import com.sun.deploy.util.StringUtils;
+
 import java.util.LinkedList;
 
 /**
@@ -149,14 +151,49 @@ public class SingleLinkedList<E> {
         }
     }
 
+    @Override
+    public String toString() {
+        Node<E> node = this.first;
+        StringBuffer nodeStr = new StringBuffer();
+        while (node!=null){
+            if (nodeStr==null || nodeStr.length()==0){
+                nodeStr.append(node.item);
+            }else {
+                nodeStr.append("->").append(node.item);
+            }
+            node = node.next;
+        }
+        return nodeStr.toString();
+    }
+
+    private boolean remove(int index) {
+        checkElementIndex(index);
+        Node<E> next = this.first;
+        if (index==0){
+            this.first = next.next;
+            return true;
+        }
+        Node<E> pre = next;
+        for (int i=0;i<index;i++){
+            pre = next;
+            next = next.next;
+        }
+        pre.next = next.next;
+        if (index+1==size){
+            this.last = pre;
+        }
+        return true;
+    }
+
     public static void main(String[] args){
         SingleLinkedList<Integer> single = new SingleLinkedList<Integer>();
         single.add(1);
         single.add(2);
         single.add(3);
-        System.out.println(single.get(3));
+        System.out.println(single);
+        single.remove(1);
+        single.remove(1);
+        System.out.println(single);
     }
-
-
 
 }
