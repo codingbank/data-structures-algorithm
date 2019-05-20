@@ -45,6 +45,7 @@ public class SingleLinkedList<E> {
      * @version: [V1.0]
      */
     transient Node<E> last;
+
     /**
      * @Title: [SingleLinkedList]
      * @author: [wangjiahui]
@@ -57,6 +58,22 @@ public class SingleLinkedList<E> {
 
     public boolean add(E element){
         linkLast(element);
+        return true;
+    }
+
+    public boolean add(int index, E element){
+        checkElementIndex(index);
+        Node<E> next = this.first;
+        Node<E> pre = null;
+        if (index == 0){
+            this.first = new Node<E>(element,next);
+        }else {
+            for(int i=0;i<index;i++) {
+                pre = next;
+                next = pre.next;
+            }
+            pre.next = new Node<E>(element,next);
+        }
         return true;
     }
 
@@ -191,8 +208,7 @@ public class SingleLinkedList<E> {
         single.add(2);
         single.add(3);
         System.out.println(single);
-        single.remove(1);
-        single.remove(1);
+        single.add(1,4);
         System.out.println(single);
     }
 
