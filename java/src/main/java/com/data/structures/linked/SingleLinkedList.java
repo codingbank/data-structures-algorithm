@@ -1,8 +1,6 @@
 package com.data.structures.linked;
 
-import com.sun.deploy.util.StringUtils;
-
-import java.util.LinkedList;
+import com.data.exception.IllegalDataSizeException;
 
 /**
  * @author [wangjiahui]
@@ -74,6 +72,8 @@ public class SingleLinkedList<E> {
             }
             pre.next = new Node<E>(element,next);
         }
+        size++;
+        modCount++;
         return true;
     }
 
@@ -172,13 +172,18 @@ public class SingleLinkedList<E> {
     public String toString() {
         Node<E> node = this.first;
         StringBuffer nodeStr = new StringBuffer();
-        while (node!=null){
+        for(int i=0; i<size; i++) {
             if (nodeStr==null || nodeStr.length()==0){
                 nodeStr.append(node.item);
             }else {
                 nodeStr.append("->").append(node.item);
             }
             node = node.next;
+        }
+        if (node==null) {
+            nodeStr.append("->").append("null");
+        }else {
+            nodeStr.append("=>").append(node.item);
         }
         return nodeStr.toString();
     }
@@ -199,6 +204,18 @@ public class SingleLinkedList<E> {
         if (index+1==size){
             this.last = pre;
         }
+        size--;
+        modCount++;
+        return true;
+    }
+
+    public boolean isCycle() {
+        if (size>1){
+            this.last.next=this.first;
+        }else {
+            throw new IllegalDataSizeException("size <= 1, can't become cycleLinked");
+        }
+        modCount++;
         return true;
     }
 
@@ -208,7 +225,7 @@ public class SingleLinkedList<E> {
         single.add(2);
         single.add(3);
         System.out.println(single);
-        single.add(1,4);
+        single.isCycle();
         System.out.println(single);
     }
 
