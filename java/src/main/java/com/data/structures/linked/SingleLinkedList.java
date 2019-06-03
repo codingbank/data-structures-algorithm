@@ -2,6 +2,8 @@ package com.data.structures.linked;
 
 import com.data.exception.IllegalDataSizeException;
 
+import java.util.LinkedList;
+
 /**
  * @author [wangjiahui]
  * @ClassName: SingleLinkedList
@@ -99,7 +101,7 @@ public class SingleLinkedList<E> {
      * @CreateDate: [2019-05-13 14:28]
      * @Description: [获取第index元素]
      * @version: [V1.0]
-     * @param [index]
+     * @param index
      * @return E
      * @throws SingleLinkedList
      */
@@ -122,7 +124,7 @@ public class SingleLinkedList<E> {
      * @CreateDate: [2019-05-13 14:29]
      * @Description: [检验index]
      * @version: [V1.0]
-     * @param [index]
+     * @param index
      * @return void
      * @throws SingleLinkedList
      */
@@ -142,7 +144,7 @@ public class SingleLinkedList<E> {
      * @CreateDate: [2019-05-06 16:17]
      * @Description: [追加元素]
      * @version: [V1.0]
-     * @param [element]
+     * @param element
      * @return void
      * @throws SingleLinkedList
      */
@@ -220,13 +222,19 @@ public class SingleLinkedList<E> {
     }
 
     public static void main(String[] args){
-        SingleLinkedList<Integer> single = new SingleLinkedList<Integer>();
-        single.add(1);
-        single.add(2);
-        single.add(3);
-        System.out.println(single);
-        single.isCycle();
-        System.out.println(single);
+//        SingleLinkedList<Integer> single = new SingleLinkedList<Integer>();
+//        single.add(1);
+//        single.add(2);
+//        single.add(3);
+//        System.out.println(single);
+//        single.isCycle();
+//        System.out.println(single);
+        LinkedList<Integer> s = new LinkedList<Integer>();
+        s.add(1);
+        s.add(2);
+        s.add(3);
+        s.add(4);
+        System.out.println(s.toString());
     }
 
 }
