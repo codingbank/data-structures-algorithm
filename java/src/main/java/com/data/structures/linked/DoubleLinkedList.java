@@ -36,8 +36,56 @@ public class DoubleLinkedList<E> {
     }
 
     public boolean add(int index, E e){
-        linkedLast(e);
+        checkPositionIndex(index);
+        if (index==size) {
+            linkedLast(e);
+        }else {
+            linkedBefore(e,node(index));
+        }
         return true;
+    }
+
+    void linkedBefore(E e, Node<E> succ) {
+        final Node<E> pre = succ.pre;
+        final Node<E> newNode = new Node<E>(pre,e,succ);
+        succ.pre = newNode;
+        if (pre == null) {
+            first = newNode;
+        }else {
+            pre.next = newNode;
+        }
+        size++;
+        modCount++;
+    }
+
+    Node node(int index) {
+        if (index<(size>>1)) {
+            Node<E> x = first;
+            for (int i=0;i<index;i++){
+                x = x.next;
+            }
+            return x;
+        }else {
+            Node<E> x = last;
+            for (int i=size-1;i>index;i--){
+                x = x.pre;
+            }
+            return x;
+        }
+    }
+
+    private void checkPositionIndex(int index) {
+        if(!isPositionIndex(index)) {
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
+    }
+
+    private String outOfBoundsMsg(int index) {
+        return "Index: "+ index +", Size: "+size;
+    }
+
+    private boolean isPositionIndex(int index) {
+        return index>=0 && index<=size;
     }
 
     private void linkedLast(E e) {
