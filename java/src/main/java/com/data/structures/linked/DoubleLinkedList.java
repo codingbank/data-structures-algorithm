@@ -101,6 +101,29 @@ public class DoubleLinkedList<E> {
         size++;
     }
 
+    @Override
+    public String toString() {
+        Node<E> node = this.first;
+        StringBuilder nodeStr = new StringBuilder();
+        if (node==null) {
+            return nodeStr.toString();
+        }
+        nodeStr.append(node.item);
+        node = node.next;
+        for (int i=1;i<size;i++) {
+            nodeStr.append("->").append(node.item);
+            node = node.next;
+        }
+        return nodeStr.toString();
+    }
 
+    public static void main(String[] args) {
+        DoubleLinkedList<Integer> doubleLinkedList = new DoubleLinkedList();
+        doubleLinkedList.add(0);
+        doubleLinkedList.add(1);
+        doubleLinkedList.add(2);
+        doubleLinkedList.add(1,3);
+        System.out.println(doubleLinkedList);
+    }
 
 }
